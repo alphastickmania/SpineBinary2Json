@@ -50,7 +50,7 @@ namespace Spine {
 		// Nonessential.
 		internal float fps;
 		internal string imagesPath;
-
+		internal string audioPath;
 		public string Name { get { return name; } set { name = value; } }
 
 		/// <summary>The skeleton's bones, sorted parent first. The root bone is always the first bone.</summary>

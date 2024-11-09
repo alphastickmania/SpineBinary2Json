@@ -23,7 +23,18 @@ namespace BIN2JSON
             }
             else
             {
-                Console.WriteLine("Default: 22 ");
+                Console.WriteLine("Enter matching filename for *.altas & *.skel:\n");
+                var inputFileName = Console.ReadLine();
+
+                if (inputFileName == null || inputFileName.Length == 0)
+                {
+                    Console.WriteLine($"Default: {_BoneName}");
+                }
+                else
+                {
+                    _BoneName = inputFileName;
+                    Console.WriteLine($"User input: {_BoneName}");
+                }
             }
             Console.ReadKey();
             #endregion
@@ -37,9 +48,9 @@ namespace BIN2JSON
                 AtlasAttachmentLoader attachmentLoader = new AtlasAttachmentLoader(atlas);
                 SkeletonBinary skeletonBinary = new SkeletonBinary(attachmentLoader);
                 skeletonData = skeletonBinary.ReadSkeletonData(_BoneName + ".skel");
-            }catch (Exception)
+            } catch (Exception e)
             {
-                Console.WriteLine("File Read Error.");
+                Console.WriteLine($"File Read Error : {e.Message}");
                 Console.ReadKey();
                 return;
             }
@@ -47,7 +58,7 @@ namespace BIN2JSON
             // Test the SkelData.
             Console.WriteLine("The spine version: \t" + skeletonData.Version);
             Console.WriteLine("The bones name: \t" + skeletonData.Name);
-            Console.WriteLine("Find the Animation: \t" + skeletonData.FindAnimation("attack").Name);
+            //Console.WriteLine("Find the Animation: \t" + skeletonData.FindAnimation("attack").Name); (lol???)
 
             #region JSON File Create
             // Takes the skeletonData and converts it into a serializable object

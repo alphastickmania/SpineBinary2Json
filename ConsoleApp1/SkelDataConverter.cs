@@ -24,6 +24,7 @@ namespace BinToJson
             sd["spine"] = skeletonData.Version;
             sd["width"] = skeletonData.Width;
             sd["height"] = skeletonData.Height;
+            sd["images"] = skeletonData.ImagesPath ?? string.Empty;
 
             root["skeleton"] = sd;
             List<Object> bn = new List<object>();
@@ -76,6 +77,10 @@ namespace BinToJson
                 cm["bones"] = bnames;
                 cm["target"] = data.Target.Name;
                 cm["mix"] = data.Mix;
+                cm["bendPositive"] = data.BendDirection > 0 ? true : false;
+                cm["compress"] = data.Compress;
+                cm["stretch"] = data.Stretch;
+                cm["uniform"] = data.Uniform;
                 ik.Add(cm);
             }
             root["ik"] = ik;
